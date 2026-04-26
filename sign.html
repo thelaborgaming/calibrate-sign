@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quotation Sign — Calibrate Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#F4F1EC;color:#1C1714;min-height:100vh;font-size:14px;line-height:1.5}
+a{color:#8B6F47}
+
+/* ── HEADER ── */
+.header{background:#1C1714;padding:14px 24px;display:flex;align-items:center;gap:14px}
+.header-brand{color:#F4F1EC;font-size:14px;font-weight:600;letter-spacing:.06em}
+.header-sub{color:#9E8E82;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-top:1px}
+
+/* ── STATES ── */
+.state{max-width:560px;margin:60px auto;text-align:center;padding:24px}
+.spinner{width:36px;height:36px;border:3px solid #E2DDD4;border-top-color:#8B6F47;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.state h2{font-size:18px;margin-bottom:8px}
+.state p{color:#6B5E52;font-size:13px}
+.state.error h2{color:#C0392B}
+
+/* ── MAIN LAYOUT ── */
+.main{max-width:860px;margin:0 auto;padding:24px 16px 60px}
+
+/* ── QUOTE DOCUMENT ── */
+.doc-wrap{background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(28,23,20,.10);padding:32px 36px;margin-bottom:24px}
+.doc-letterhead{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;padding-bottom:18px;margin-bottom:16px;border-bottom:2px solid #B8945A}
+.doc-co-name{font-size:16px;font-weight:700;color:#1C1714;letter-spacing:.02em}
+.doc-co-detail{font-size:10.5px;color:#6B5E52;margin-top:3px;line-height:1.7}
+.doc-ref-box{background:#B8945A;color:#fff;border-radius:6px;padding:9px 16px;text-align:center;min-width:140px}
+.doc-ref-label{font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.doc-ref-val{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;margin-top:3px}
+.doc-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:3px;border:1.5px solid #B8945A;color:#B8945A;margin-top:7px}
+.doc-date{font-size:10px;color:#9E8E82;margin-top:6px;text-align:center}
+
+.doc-client-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 24px;font-size:11.5px;margin-bottom:16px;padding:11px 14px;background:#FAF8F5;border-radius:6px;border:1px solid #E8E2D9}
+.doc-client-row{display:flex;gap:6px}
+.doc-client-label{color:#9E8E82;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;min-width:72px;flex-shrink:0}
+.doc-client-val{color:#1a1a1a;font-weight:500}
+
+.doc-section-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#B8945A;margin:0 0 6px;padding-bottom:4px;border-bottom:1px solid #E8E2D9}
+.doc-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:0}
+.doc-table th{background:#F5F0E8;color:#6B5E52;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:6px 8px;text-align:left;border-bottom:1.5px solid #D4C9B8}
+.doc-table th.r,.doc-table td.r{text-align:right}
+.doc-table td{padding:6px 8px;border-bottom:1px solid #EDE8DF;vertical-align:top}
+.doc-table tr:last-child td{border-bottom:none}
+.doc-cat-row td{background:#F0EBE0;font-weight:700;font-size:10px;color:#6B5E52;text-transform:uppercase;letter-spacing:.06em;padding:5px 8px;border-bottom:1px solid #D4C9B8}
+.doc-area-row td{font-size:10px;font-style:italic;color:#9E8E82;padding:3px 8px;background:#FAF8F5}
+.doc-item-name{font-weight:500;line-height:1.35;color:#1a1a1a}
+.doc-item-dim{font-size:10px;color:#9E8E82;margin-top:2px}
+.doc-item-remark{font-size:10px;color:#7B1818;font-style:italic;margin-top:2px}
+
+.doc-totals-wrap{display:flex;justify-content:flex-end;margin-top:14px}
+.doc-totals-table{border-collapse:collapse;font-size:12px}
+.doc-totals-table td{padding:4px 8px}
+.doc-totals-table .tl{color:#6B5E52;text-align:right;font-size:11px}
+.doc-totals-table .tv{font-family:'DM Mono',monospace;font-weight:600;text-align:right;min-width:90px;color:#1a1a1a}
+.doc-totals-table tr.grand td{border-top:2px solid #B8945A;padding-top:8px}
+.doc-totals-table tr.grand .tv{font-size:17px;color:#B8945A}
+
+.doc-notes{margin-top:16px;padding:11px 14px;background:#FAF8F5;border-radius:6px;border-left:3px solid #B8945A;font-size:11px;color:#6B5E52;white-space:pre-wrap}
+
+.doc-footer{margin-top:20px;padding-top:12px;border-top:1px solid #E8E2D9;font-size:9.5px;color:#9E8E82;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+
+/* ── SIGNING SECTION ── */
+.sign-card{background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(28,23,20,.10);padding:28px 32px;margin-bottom:20px}
+.sign-card h3{font-size:15px;font-weight:700;margin-bottom:14px;color:#1C1714;border-bottom:1px solid #E2DDD4;padding-bottom:10px}
+.tc-box{background:#FAF8F5;border:1px solid #E2DDD4;border-radius:6px;padding:14px 16px;font-size:11.5px;color:#6B5E52;line-height:1.8;max-height:200px;overflow-y:auto;margin-bottom:16px}
+.tc-box h4{color:#1C1714;font-size:12px;margin-bottom:8px}
+.tc-box ol{padding-left:18px}
+.tc-box li{margin-bottom:6px}
+
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:16px}
+.field label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#6B5E52}
+.field input{background:#F4F1EC;border:1px solid #E2DDD4;border-radius:6px;padding:9px 11px;color:#1C1714;outline:none;font-size:14px;font-family:inherit;transition:border-color .2s}
+.field input:focus{border-color:#8B6F47;box-shadow:0 0 0 3px rgba(139,111,71,.12)}
+
+/* ── SIGNATURE PAD ── */
+.sig-wrap{border:2px dashed #D4C9B8;border-radius:8px;background:#FDFAF5;position:relative;margin-bottom:12px;cursor:crosshair;overflow:hidden}
+.sig-wrap.has-sig{border-color:#8B6F47;border-style:solid}
+canvas#sigPad{display:block;width:100%;touch-action:none}
+.sig-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-size:10px;color:#C8C0B4;pointer-events:none;white-space:nowrap;user-select:none}
+.btn-clear-sig{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.9);border:1px solid #E2DDD4;color:#6B5E52;font-size:11px;padding:3px 9px;border-radius:4px;cursor:pointer;z-index:2;font-family:inherit}
+.btn-clear-sig:hover{background:#fff;border-color:#C0392B;color:#C0392B}
+
+.agree-row{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:#F0ECE4;border-radius:6px;margin-bottom:20px;cursor:pointer}
+.agree-row input[type=checkbox]{width:17px;height:17px;accent-color:#8B6F47;flex-shrink:0;margin-top:1px;cursor:pointer}
+.agree-row span{font-size:12.5px;color:#1C1714;line-height:1.5}
+
+.btn-submit{width:100%;padding:14px;background:#8B6F47;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;letter-spacing:.02em}
+.btn-submit:hover:not(:disabled){background:#6D5535;transform:translateY(-1px);box-shadow:0 6px 20px rgba(139,111,71,.35)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.submit-hint{font-size:11px;color:#9E8E82;text-align:center;margin-top:8px}
+
+/* ── SUCCESS ── */
+.success-card{background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(28,23,20,.10);padding:48px 36px;text-align:center;max-width:560px;margin:40px auto}
+.success-icon{width:64px;height:64px;border-radius:50%;background:#E8F5E9;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px}
+.success-card h2{font-size:22px;font-weight:700;margin-bottom:10px;color:#2E7D32}
+.success-card p{color:#6B5E52;font-size:13.5px;line-height:1.7}
+.success-ref{font-family:'DM Mono',monospace;background:#F0ECE4;padding:4px 12px;border-radius:4px;font-size:13px;display:inline-block;margin-top:10px}
+
+@media(max-width:600px){
+  .doc-wrap,.sign-card{padding:20px 16px}
+  .doc-letterhead{grid-template-columns:1fr}
+  .doc-client-grid{grid-template-columns:1fr}
+  .main{padding:16px 10px 40px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div>
+    <div class="header-brand">CALIBRATE DESIGN PTE. LTD.</div>
+    <div class="header-sub">Quotation Review & Acceptance</div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- Loading -->
+  <div class="state" id="stateLoading">
+    <div class="spinner"></div>
+    <h2>Loading your quotation…</h2>
+    <p>This will only take a moment.</p>
+  </div>
+
+  <!-- Error -->
+  <div class="state error" id="stateError" style="display:none">
+    <h2>Unable to load quotation</h2>
+    <p id="errMsg">The link may be invalid or expired. Please contact Calibrate Design.</p>
+    <p style="margin-top:16px"><a href="mailto:contact@calibratedesign.co">contact@calibratedesign.co</a></p>
+  </div>
+
+  <!-- Quote document -->
+  <div id="stateDoc" style="display:none">
+    <div class="doc-wrap" id="docWrap"></div>
+
+    <!-- Signing form -->
+    <div class="sign-card">
+      <h3>Review, Agree & Sign</h3>
+
+      <div class="tc-box">
+        <h4>Terms & Conditions</h4>
+        <ol>
+          <li>This quotation is valid for <strong>30 days</strong> from the date of issue.</li>
+          <li>A deposit of <strong>30%</strong> of the total contract value is required upon signing to commence work.</li>
+          <li>Progress payments shall be made as per the payment schedule agreed upon commencement.</li>
+          <li>Any variations to the scope of work must be agreed in writing and may affect the contract price and timeline.</li>
+          <li>Calibrate Design Pte. Ltd. reserves the right to adjust timelines due to unforeseen circumstances including delays from third-party suppliers or authorities.</li>
+          <li>All materials supplied shall remain the property of Calibrate Design Pte. Ltd. until full payment is received.</li>
+          <li>The client is responsible for ensuring site access is available for the duration of the renovation works.</li>
+          <li>This quotation shall form part of the renovation contract upon signing by both parties.</li>
+        </ol>
+      </div>
+
+      <div class="field">
+        <label>Your Full Name (as signatory)</label>
+        <input type="text" id="signerName" placeholder="Enter your full name">
+      </div>
+
+      <div class="field">
+        <label>Draw Your Signature Below</label>
+      </div>
+      <div class="sig-wrap" id="sigWrap">
+        <canvas id="sigPad"></canvas>
+        <span class="sig-label">Sign here using your mouse or finger</span>
+        <button class="btn-clear-sig" id="btnClearSig" type="button">Clear</button>
+      </div>
+
+      <label class="agree-row">
+        <input type="checkbox" id="chkAgree">
+        <span>I have read, understood, and agree to the above Terms & Conditions, and I accept this quotation on behalf of myself / the named client. I understand this constitutes a legally binding agreement.</span>
+      </label>
+
+      <button class="btn-submit" id="btnSign" disabled>Sign & Accept Quotation</button>
+      <div class="submit-hint">By clicking above, you are electronically signing this document.</div>
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div id="stateSuccess" style="display:none">
+    <div class="success-card">
+      <div class="success-icon">✓</div>
+      <h2>Quotation Signed</h2>
+      <p>Thank you for accepting the quotation. Calibrate Design has been notified and will be in touch shortly to confirm the next steps.</p>
+      <div class="success-ref" id="successRef"></div>
+      <p style="margin-top:20px;font-size:12px">For any enquiries: <a href="mailto:contact@calibratedesign.co">contact@calibratedesign.co</a> &nbsp;|&nbsp; +65 9422 3385</p>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+/* ══════════════════════════════════════════════════════
+   CONFIG
+══════════════════════════════════════════════════════ */
+const N8N_LOAD  = 'https://n8n.srv1165221.hstgr.cloud/webhook/load-quote';
+const N8N_SIGN  = 'https://n8n.srv1165221.hstgr.cloud/webhook/client-sign';
+
+/* ══════════════════════════════════════════════════════
+   HELPERS
+══════════════════════════════════════════════════════ */
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fmt = n  => 'SGD ' + (Number(n)||0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+function show(id){ document.getElementById(id).style.display=''; }
+function hide(id){ document.getElementById(id).style.display='none'; }
+function setState(s){
+  ['stateLoading','stateError','stateDoc','stateSuccess'].forEach(hide);
+  show('state'+s);
+}
+
+/* ══════════════════════════════════════════════════════
+   PARSE URL PARAMS
+══════════════════════════════════════════════════════ */
+const params = new URLSearchParams(window.location.search);
+const QUOTE_REF = params.get('ref') || '';
+const TOKEN     = params.get('token') || '';
+
+/* ══════════════════════════════════════════════════════
+   BUILD QUOTATION HTML
+══════════════════════════════════════════════════════ */
+function buildQuoteHTML(data) {
+  const p = data.project || {};
+  const s = data.summary || {};
+  const items = data.line_items || [];
+
+  // Sort items into category → area
+  const catMap = {};
+  items.forEach(li => {
+    const cat = li.category_id || li.category || 'General';
+    const area = li.area_id || li.area || '';
+    if (!catMap[cat]) catMap[cat] = {};
+    if (!catMap[cat][area]) catMap[cat][area] = [];
+    catMap[cat][area].push(li);
+  });
+
+  const CAT_ORDER = ['PROFESSIONAL SERVICES','RENOVATION PERMIT/PE ENDORSEMENT','DEMOLITION WORKS','MASONRY WORKS','MASONARY WORKS','SANITARY & PLUMBING WORKS','DOOR / GLASS / WINDOWS WORKS','CARPENTRY WORKS','TABLE TOP / PARTITION & CEILING','ELECTRICAL WORKS','AIRCON WORKS','MISCELLANEOUS'];
+  const sortedCats = Object.keys(catMap).sort((a,b) => {
+    const ai = CAT_ORDER.findIndex(x => x.toUpperCase() === a.toUpperCase());
+    const bi = CAT_ORDER.findIndex(x => x.toUpperCase() === b.toUpperCase());
+    return (ai<0?99:ai)-(bi<0?99:bi);
+  });
+
+  let rowsHTML = '', num = 1;
+  sortedCats.forEach(cat => {
+    rowsHTML += `<tr class="doc-cat-row"><td colspan="5">${esc(cat)}</td></tr>`;
+    const areas = catMap[cat];
+    const akeys = Object.keys(areas);
+    akeys.forEach(area => {
+      if (area && akeys.length > 1) rowsHTML += `<tr class="doc-area-row"><td colspan="5">↳ ${esc(area)}</td></tr>`;
+      areas[area].forEach(li => {
+        const qty  = parseFloat(li.qty) || 1;
+        const unit = li.unit || 'lot';
+        const amt  = parseFloat(li.amount) || 0;
+        const unitAmt = qty ? (amt / qty) : amt;
+        const dim = (li.width_mm && li.height_mm) ? `L:${li.width_mm}mm × H:${li.height_mm}mm` : '';
+        const remark = li.remarks || li.remark || '';
+        rowsHTML += `<tr>
+          <td style="color:#9E8E82;font-family:'DM Mono',monospace;font-size:9.5px;width:22px">${num++}</td>
+          <td><div class="doc-item-name">${esc(li.item_name||li.item_name_snapshot||'')}</div>
+            ${dim ? `<div class="doc-item-dim">📐 ${esc(dim)}</div>` : ''}
+            ${remark ? `<div class="doc-item-remark">↳ ${esc(remark)}</div>` : ''}</td>
+          <td class="r" style="width:38px">${qty}</td>
+          <td style="width:48px;font-size:11px">${esc(unit)}</td>
+          <td class="r" style="width:82px;font-weight:600">${fmt(amt)}</td>
+        </tr>`;
+      });
+    });
+  });
+
+  const today = new Date().toLocaleDateString('en-SG', {day:'2-digit',month:'short',year:'numeric'});
+
+  return `
+    <div class="doc-letterhead">
+      <div>
+        <div class="doc-co-name">CALIBRATE DESIGN PTE. LTD.</div>
+        <div class="doc-co-detail">
+          61 Ubi Road 1, #02-10 Oxley BizHub 1, Singapore 408727<br>
+          +65 9422 3385 &nbsp;|&nbsp; contact@calibratedesign.co<br>
+          UEN: 201820718K
+        </div>
+      </div>
+      <div style="text-align:center">
+        <div class="doc-ref-box">
+          <div class="doc-ref-label">Quotation Ref</div>
+          <div class="doc-ref-val">${esc(p.quote_ref||QUOTE_REF)}</div>
+        </div>
+        <div><span class="doc-badge">CUSTOMER COPY</span></div>
+        <div class="doc-date">Date: ${today}</div>
+      </div>
+    </div>
+
+    <div class="doc-client-grid">
+      <div class="doc-client-row"><span class="doc-client-label">Client</span><span class="doc-client-val">${esc(p.client_name||'—')}</span></div>
+      <div class="doc-client-row"><span class="doc-client-label">Salesperson</span><span class="doc-client-val">${esc(p.salesperson||'—')}</span></div>
+      <div class="doc-client-row"><span class="doc-client-label">Phone</span><span class="doc-client-val">${esc(p.phone||'—')}</span></div>
+      <div class="doc-client-row"><span class="doc-client-label">Address</span><span class="doc-client-val">${esc(p.project_address||'—')}</span></div>
+    </div>
+
+    <div class="doc-section-title">Line Items</div>
+    <table class="doc-table">
+      <thead><tr>
+        <th style="width:22px">#</th><th>Description</th>
+        <th class="r" style="width:38px">Qty</th>
+        <th style="width:48px">Unit</th>
+        <th class="r" style="width:82px">Total</th>
+      </tr></thead>
+      <tbody>${rowsHTML}</tbody>
+    </table>
+
+    <div class="doc-totals-wrap">
+      <table class="doc-totals-table"><tbody>
+        <tr class="grand"><td class="tl">TOTAL AMOUNT</td><td class="tv">${fmt(s.total_amount||0)}</td></tr>
+      </tbody></table>
+    </div>
+
+    ${p.notes ? `<div class="doc-notes"><strong style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#B8945A">Notes</strong>\n${esc(p.notes)}</div>` : ''}
+
+    <div class="doc-footer">
+      <div>Calibrate Design Pte. Ltd. &nbsp;·&nbsp; +65 9422 3385 &nbsp;·&nbsp; contact@calibratedesign.co</div>
+      <div>Valid for 30 days from date of issue.</div>
+    </div>`;
+}
+
+/* ══════════════════════════════════════════════════════
+   LOAD QUOTE
+══════════════════════════════════════════════════════ */
+async function loadQuote() {
+  if (!QUOTE_REF) {
+    document.getElementById('errMsg').textContent = 'No quotation reference found in this link. Please use the link sent to you by email.';
+    setState('Error'); return;
+  }
+  try {
+    const url = `${N8N_LOAD}?ref=${encodeURIComponent(QUOTE_REF)}&token=${encodeURIComponent(TOKEN)}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    document.getElementById('docWrap').innerHTML = buildQuoteHTML(data);
+    setState('Doc');
+    window._quoteData = data;
+  } catch(e) {
+    console.error('Load failed:', e);
+    document.getElementById('errMsg').textContent = 'Could not load quotation: ' + e.message;
+    setState('Error');
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   CANVAS SIGNATURE PAD
+══════════════════════════════════════════════════════ */
+const canvas = document.getElementById('sigPad');
+const ctx2   = canvas.getContext('2d');
+let drawing  = false, hasSig = false;
+
+function resizeCanvas() {
+  const wrap = document.getElementById('sigWrap');
+  const w = wrap.clientWidth;
+  const h = Math.max(160, Math.min(220, w * 0.35));
+  canvas.width  = w * (window.devicePixelRatio || 1);
+  canvas.height = h * (window.devicePixelRatio || 1);
+  canvas.style.height = h + 'px';
+  ctx2.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+  ctx2.lineWidth = 2.2;
+  ctx2.lineCap   = 'round';
+  ctx2.lineJoin  = 'round';
+  ctx2.strokeStyle = '#1C1714';
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function getPos(e) {
+  const r = canvas.getBoundingClientRect();
+  const src = e.touches ? e.touches[0] : e;
+  return { x: src.clientX - r.left, y: src.clientY - r.top };
+}
+canvas.addEventListener('mousedown',  e => { drawing=true; const p=getPos(e); ctx2.beginPath(); ctx2.moveTo(p.x,p.y); });
+canvas.addEventListener('mousemove',  e => { if(!drawing)return; const p=getPos(e); ctx2.lineTo(p.x,p.y); ctx2.stroke(); hasSig=true; checkReady(); document.getElementById('sigWrap').classList.add('has-sig'); });
+canvas.addEventListener('mouseup',    () => { drawing=false; });
+canvas.addEventListener('mouseleave', () => { drawing=false; });
+canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing=true; const p=getPos(e); ctx2.beginPath(); ctx2.moveTo(p.x,p.y); }, {passive:false});
+canvas.addEventListener('touchmove',  e => { e.preventDefault(); if(!drawing)return; const p=getPos(e); ctx2.lineTo(p.x,p.y); ctx2.stroke(); hasSig=true; checkReady(); document.getElementById('sigWrap').classList.add('has-sig'); }, {passive:false});
+canvas.addEventListener('touchend',   () => { drawing=false; });
+
+document.getElementById('btnClearSig').addEventListener('click', () => {
+  ctx2.clearRect(0, 0, canvas.width, canvas.height);
+  hasSig = false;
+  document.getElementById('sigWrap').classList.remove('has-sig');
+  checkReady();
+});
+
+/* ══════════════════════════════════════════════════════
+   SUBMIT READINESS
+══════════════════════════════════════════════════════ */
+function checkReady() {
+  const name  = document.getElementById('signerName').value.trim();
+  const agreed= document.getElementById('chkAgree').checked;
+  document.getElementById('btnSign').disabled = !(name && agreed && hasSig);
+}
+document.getElementById('signerName').addEventListener('input', checkReady);
+document.getElementById('chkAgree').addEventListener('change', checkReady);
+
+/* ══════════════════════════════════════════════════════
+   SUBMIT SIGNATURE
+══════════════════════════════════════════════════════ */
+document.getElementById('btnSign').addEventListener('click', async () => {
+  const btn = document.getElementById('btnSign');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  const signatureBase64 = canvas.toDataURL('image/png');
+  const signerName = document.getElementById('signerName').value.trim();
+
+  const payload = {
+    quote_ref:        QUOTE_REF,
+    signing_token:    TOKEN,
+    client_name:      signerName,
+    signature_base64: signatureBase64,
+    agreed:           true,
+    signed_at:        new Date().toISOString()
+  };
+
+  try {
+    const res = await fetch(N8N_SIGN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (data.success === false) throw new Error(data.message || 'Unknown error');
+    document.getElementById('successRef').textContent = QUOTE_REF;
+    setState('Success');
+  } catch(e) {
+    alert('Submission failed: ' + e.message + '\n\nPlease try again or contact contact@calibratedesign.co');
+    btn.disabled = false;
+    btn.textContent = 'Sign & Accept Quotation';
+    checkReady();
+  }
+});
+
+/* ══════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════ */
+loadQuote();
+</script>
+</body>
+</html>
