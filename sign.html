@@ -345,6 +345,7 @@ async function loadQuote() {
     document.getElementById('docWrap').innerHTML = buildQuoteHTML(data);
     setState('Doc');
     window._quoteData = data;
+    resizeCanvas(); // re-measure now that the canvas is visible
   } catch(e) {
     console.error('Load failed:', e);
     document.getElementById('errMsg').textContent = 'Could not load quotation: ' + e.message;
