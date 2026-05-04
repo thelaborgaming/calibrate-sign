@@ -240,7 +240,8 @@ const RCMA_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 46" s
    HELPERS
 ══════════════════════════════════════════════════════ */
 const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-const fmt = n  => '$' + (Number(n)||0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+const money = n => parseFloat(String(n||'').replace(/[^0-9.-]/g,''))||0;
+const fmt = n  => '$' + money(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
 function show(id){ document.getElementById(id).style.display=''; }
 function hide(id){ document.getElementById(id).style.display='none'; }
 function setState(s){
@@ -279,9 +280,9 @@ function buildQuoteHTML(data) {
     akeys.forEach(area => {
       if (akeys.length > 1) rowsHTML += `<tr class="doc-area-row"><td colspan="6">↳ ${esc(area)}</td></tr>`;
       areas[area].forEach(li => {
-        const qty = parseFloat(li.qty) || 1;
+        const qty = money(li.qty) || 1;
         const unit = li.unit || 'lot';
-        const amt = parseFloat(li.amount) || 0;
+        const amt = money(li.amount);
         const unitAmt = qty ? amt / qty : amt;
         const dim = (li.width_mm && li.height_mm) ? `L:${li.width_mm}mm × H:${li.height_mm}mm` : (li.width_mm ? `W:${li.width_mm}mm` : '');
         const remark = li.remarks || li.remark || '';
@@ -340,7 +341,7 @@ function buildQuoteHTML(data) {
 
     <div class="doc-totals-wrap">
       <table class="doc-totals-table"><tbody>
-        <tr class="grand"><td class="tl">TOTAL AMOUNT</td><td class="tv">${fmt(s.total_amount||0)}</td></tr>
+        <tr class="grand"><td class="tl">TOTAL AMOUNT</td><td class="tv">${fmt(s.total_amount)}</td></tr>
       </tbody></table>
     </div>
 
