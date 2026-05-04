@@ -139,8 +139,8 @@ input[type=number]::-webkit-inner-spin-button{opacity:.4}
 .item-name{font-size:12px;font-weight:500;color:var(--text-primary);line-height:1.35}
 
 /* ─── TINY INPUTS ───────────────────────────────────── */
-/* Column order: Qty | Unit | Unit Cost | Markup % | Amount | P/L */
-.item-inputs{display:grid;grid-template-columns:52px 58px 80px 58px 82px 72px;gap:5px;align-items:end}
+/* Column order: Qty | Unit | Unit Cost | Amount | P/L */
+.item-inputs{display:grid;grid-template-columns:52px 58px 80px 82px 72px;gap:5px;align-items:end}
 .item-dim-row{display:grid;grid-template-columns:82px 82px;gap:5px}
 .tf{display:flex;flex-direction:column;gap:2px}
 .tl{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted)}
@@ -164,8 +164,8 @@ input[type=number]::-webkit-inner-spin-button{opacity:.4}
 .custom-tag{font-family:var(--font-mono);font-size:9px;font-weight:500;background:var(--warning);color:#fff;border-radius:3px;padding:2px 5px;text-transform:uppercase}
 .custom-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
 .custom-g1{display:grid;grid-template-columns:1fr 100px 64px;gap:5px;margin-bottom:5px}
-/* Qty | Unit | Unit Cost | Markup % | Amount | P/L | W | H */
-.custom-g2{display:grid;grid-template-columns:52px 58px 80px 58px 82px 72px 78px 78px;gap:5px;margin-bottom:5px}
+/* Qty | Unit | Unit Cost | Amount | P/L | W | H */
+.custom-g2{display:grid;grid-template-columns:52px 58px 80px 82px 72px 78px 78px;gap:5px;margin-bottom:5px}
 
 /* ─── ADD CUSTOM BAR ────────────────────────────────── */
 .add-custom-bar{padding:11px 17px;border-top:1px solid var(--border)}
@@ -610,7 +610,16 @@ function insertDefaults(){
 }
 
 function addFromPicker(items){
-  items.forEach(c=>lineItems.push(makeLI(c,false)));
+  items.forEach(c=>{
+    const li=makeLI(c,false);
+    // Find the last existing item in the same category+area to insert after
+    let insertIdx=-1;
+    for(let i=lineItems.length-1;i>=0;i--){
+      if(lineItems[i].category_id===li.category_id&&lineItems[i].area_id===li.area_id){insertIdx=i;break;}
+    }
+    if(insertIdx>=0){lineItems.splice(insertIdx+1,0,li);}
+    else{lineItems.push(li);}
+  });
   renderLineItems();
   updateSummary();
 }
@@ -822,7 +831,7 @@ function buildPickerRow(catId,areaId){
 
 /* ══════════════════════════════════════════════════════
    RENDER CATALOG ROW
-   Column order: Qty | Unit | Unit Cost | Markup % | Amount | P/L
+   Column order: Qty | Unit | Unit Cost | Amount | P/L
 ══════════════════════════════════════════════════════ */
 function renderCatalogRow(li){
   const row=document.createElement('div');
@@ -852,9 +861,8 @@ function renderCatalogRow(li){
         <div class="tf"><span class="tl">Qty</span><input type="number" class="ti" data-field="qty" value="${li.qty}" min="0" step="0.01"></div>
         <div class="tf"><span class="tl">Unit</span><input type="text" class="ti" data-field="unit" value="${esc(li.unit)}" placeholder="lot"></div>
         <div class="tf"><span class="tl">Unit Cost</span><input type="number" class="ti" data-field="base_cost" value="${li.base_cost}" min="0" step="0.01"></div>
-        <div class="tf"><span class="tl">Markup %</span><input type="number" class="ti" data-field="markup_pct" value="${li.markup_pct}" min="0" step="0.5"></div>
         <div class="tf"><span class="tl">Amount ($)</span><input type="number" class="ti" data-field="amount" value="${Number(li.amount).toFixed(2)}" min="0" step="0.01"></div>
-        <div class="tf"><span class="tl">P / L</span><input type="text" class="ti pl-display ${pl>=0?'pl-pos':'pl-neg'}" readonly value="${(pl>=0?'+':'')+pl.toFixed(2)}"></div>
+        <div class="tf"><span class="tl">P / L</span><input type="number" class="ti pl-display ${pl>=0?'pl-pos':'pl-neg'}" data-field="pl" value="${pl.toFixed(2)}" step="0.01"></div>
       </div>
       ${dimHTML}${commentHTML}
     </div>
@@ -881,18 +889,20 @@ function handleChange(e,li,row){
   else if(field==='unit'){li.unit=val;}
   else{
     li[field]=parseFloat(val)||0;
-    if(field==='markup_pct'||field==='base_cost'){
-      li.amount=li.base_cost*(1+li.markup_pct/100);
+    if(field==='pl'){
+      li.amount=li.base_cost+(parseFloat(val)||0);
       const el=row.querySelector('[data-field="amount"]');if(el)el.value=li.amount.toFixed(2);
+    }else if(field==='amount'||field==='base_cost'){
+      // just store; P/L display refreshes below
     }
   }
   refreshPL(row,li);updateSummary();
 }
-function refreshPL(row,li){const pl=calcPL(li);const el=row.querySelector('.pl-display');if(!el)return;el.value=(pl>=0?'+':'')+pl.toFixed(2);el.className='ti pl-display '+(pl>=0?'pl-pos':'pl-neg');}
+function refreshPL(row,li){const pl=calcPL(li);const el=row.querySelector('.pl-display');if(!el||document.activeElement===el)return;el.value=pl.toFixed(2);el.className='ti pl-display '+(pl>=0?'pl-pos':'pl-neg');}
 
 /* ══════════════════════════════════════════════════════
    RENDER CUSTOM ROW
-   Cols: Qty | Unit | Unit Cost | Markup % | Amount | P/L | W | H
+   Cols: Qty | Unit | Unit Cost | Amount | P/L | W | H
 ══════════════════════════════════════════════════════ */
 function renderCustomRow(li){
   const row=document.createElement('div');row.className='custom-row';row.dataset.id=li.id;
@@ -908,9 +918,8 @@ function renderCustomRow(li){
       <div class="tf"><span class="tl">Qty</span><input type="number" class="ti" data-field="qty" value="${li.qty}" min="0"></div>
       <div class="tf"><span class="tl">Unit</span><input type="text" class="ti" data-field="unit" value="${esc(li.unit)}" placeholder="lot"></div>
       <div class="tf"><span class="tl">Unit Cost</span><input type="number" class="ti" data-field="base_cost" value="${li.base_cost}" min="0" step="0.01"></div>
-      <div class="tf"><span class="tl">Markup %</span><input type="number" class="ti" data-field="markup_pct" value="${li.markup_pct}" min="0" step="0.5"></div>
       <div class="tf"><span class="tl">Amount ($)</span><input type="number" class="ti" data-field="amount" value="${Number(li.amount).toFixed(2)}" min="0" step="0.01"></div>
-      <div class="tf"><span class="tl">P / L</span><input type="text" class="ti pl-display ${pl>=0?'pl-pos':'pl-neg'}" readonly value="${(pl>=0?'+':'')+pl.toFixed(2)}"></div>
+      <div class="tf"><span class="tl">P / L</span><input type="number" class="ti pl-display ${pl>=0?'pl-pos':'pl-neg'}" data-field="pl" value="${pl.toFixed(2)}" step="0.01"></div>
       <div class="tf"><span class="tl">Width mm</span><input type="number" class="ti" data-field="width_mm" value="${li.width_mm||''}" placeholder="opt."></div>
       <div class="tf"><span class="tl">Height mm</span><input type="number" class="ti" data-field="height_mm" value="${li.height_mm||''}" placeholder="opt."></div>
     </div>
@@ -921,7 +930,10 @@ function renderCustomRow(li){
       const f=e.target.dataset.field;
       const textF=['item_name','unit','area_id','remarks','category_id'];
       li[f]=textF.includes(f)?e.target.value:(parseFloat(e.target.value)||0);
-      if(f==='markup_pct'||f==='base_cost'){li.amount=li.base_cost*(1+li.markup_pct/100);const el=row.querySelector('[data-field="amount"]');if(el)el.value=li.amount.toFixed(2);}
+      if(f==='pl'){
+        li.amount=li.base_cost+(parseFloat(e.target.value)||0);
+        const el=row.querySelector('[data-field="amount"]');if(el)el.value=li.amount.toFixed(2);
+      }
       li.included=true;refreshPL(row,li);updateSummary();
     });
   });
@@ -1028,7 +1040,7 @@ function buildDocHTML(payload, mode){
     catMap[c][a].push(li);
   });
 
-  const colCount=isDesigner?8:6;
+  const colCount=isDesigner?7:6;
 
   let rowsHTML='',num=1;
   Object.entries(catMap).forEach(([cat,areas])=>{
@@ -1048,7 +1060,6 @@ function buildDocHTML(payload, mode){
           <td class="r" style="width:38px">${li.qty}</td>
           <td style="width:44px">${esc(li.unit||'lot')}</td>
           <td class="r" style="width:72px">${fmt(unitAmt)}</td>
-          ${isDesigner?`<td class="r" style="width:48px">${li.markup_pct}%</td>`:''}
           <td class="r" style="width:78px;font-weight:600">${fmt(li.amount)}</td>
           ${isDesigner?`<td class="r" style="width:72px;color:${plVal>=0?'#2E7D32':'#C62828'};font-weight:600">${(plVal>=0?'+':'')+fmt(plVal)}</td>`:''}
         </tr>`;
@@ -1096,7 +1107,6 @@ function buildDocHTML(payload, mode){
         <th class="r" style="width:38px">Qty</th>
         <th style="width:44px">Unit</th>
         <th class="r" style="width:72px">Unit Amt</th>
-        ${isDesigner?'<th class="r" style="width:48px">Markup</th>':''}
         <th class="r" style="width:78px">Total</th>
         ${isDesigner?'<th class="r" style="width:72px">P / L</th>':''}
       </tr></thead>

@@ -29,28 +29,31 @@ a{color:#8B6F47}
 
 /* ── QUOTE DOCUMENT ── */
 .doc-wrap{background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(28,23,20,.10);padding:32px 36px;margin-bottom:24px}
-.doc-letterhead{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;padding-bottom:18px;margin-bottom:16px;border-bottom:2px solid #B8945A}
-.doc-co-name{font-size:16px;font-weight:700;color:#1C1714;letter-spacing:.02em}
-.doc-co-detail{font-size:10.5px;color:#6B5E52;margin-top:3px;line-height:1.7}
-.doc-ref-box{background:#B8945A;color:#fff;border-radius:6px;padding:9px 16px;text-align:center;min-width:140px}
+.doc-letterhead{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;padding-bottom:16px;margin-bottom:14px;border-bottom:2px solid #B8945A}
+.doc-logo-wrap{display:flex;flex-direction:column;gap:6px}
+.doc-co-name{font-size:11px;color:#6B5E52;letter-spacing:.05em;margin-top:2px}
+.doc-co-reg{font-size:9.5px;color:#9E8E82}
+.doc-certs{display:flex;gap:10px;align-items:center;margin-top:4px}
+.doc-ref-col{text-align:right}
+.doc-ref-box{background:#B8945A;color:#fff;border-radius:6px;padding:8px 14px;display:inline-block;text-align:center;margin-bottom:8px}
 .doc-ref-label{font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
-.doc-ref-val{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;margin-top:3px}
-.doc-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:3px;border:1.5px solid #B8945A;color:#B8945A;margin-top:7px}
-.doc-date{font-size:10px;color:#9E8E82;margin-top:6px;text-align:center}
+.doc-ref-val{font-family:monospace;font-size:17px;font-weight:700;margin-top:3px}
+.doc-copy-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;border:1.5px solid #B8945A;color:#B8945A}
 
-.doc-client-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 24px;font-size:11.5px;margin-bottom:16px;padding:11px 14px;background:#FAF8F5;border-radius:6px;border:1px solid #E8E2D9}
-.doc-client-row{display:flex;gap:6px}
-.doc-client-label{color:#9E8E82;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;min-width:72px;flex-shrink:0}
+.doc-client-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;font-size:11.5px;margin-bottom:14px;padding:10px 12px;background:#FAF8F5;border-radius:6px;border:1px solid #E8E2D9}
+.doc-client-row{display:flex;gap:4px}
+.doc-client-label{color:#9E8E82;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;min-width:72px}
 .doc-client-val{color:#1a1a1a;font-weight:500}
 
 .doc-section-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#B8945A;margin:0 0 6px;padding-bottom:4px;border-bottom:1px solid #E8E2D9}
 .doc-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:0}
-.doc-table th{background:#F5F0E8;color:#6B5E52;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:6px 8px;text-align:left;border-bottom:1.5px solid #D4C9B8}
+.doc-table th{background:#F5F0E8;color:#6B5E52;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:6px 7px;text-align:left;border-bottom:1.5px solid #D4C9B8}
 .doc-table th.r,.doc-table td.r{text-align:right}
-.doc-table td{padding:6px 8px;border-bottom:1px solid #EDE8DF;vertical-align:top}
+.doc-table td{padding:6px 7px;border-bottom:1px solid #EDE8DF;vertical-align:top}
+.doc-table td.r{font-family:monospace;font-size:11px}
 .doc-table tr:last-child td{border-bottom:none}
-.doc-cat-row td{background:#F0EBE0;font-weight:700;font-size:10px;color:#6B5E52;text-transform:uppercase;letter-spacing:.06em;padding:5px 8px;border-bottom:1px solid #D4C9B8}
-.doc-area-row td{font-size:10px;font-style:italic;color:#9E8E82;padding:3px 8px;background:#FAF8F5}
+.doc-cat-row td{background:#F0EBE0;font-weight:700;font-size:10px;color:#6B5E52;text-transform:uppercase;letter-spacing:.06em;padding:5px 7px;border-bottom:1px solid #D4C9B8}
+.doc-area-row td{font-size:10px;font-style:italic;color:#9E8E82;padding:3px 7px;background:#FAF8F5;border-bottom:1px solid #EDE8DF}
 .doc-item-name{font-weight:500;line-height:1.35;color:#1a1a1a}
 .doc-item-dim{font-size:10px;color:#9E8E82;margin-top:2px}
 .doc-item-remark{font-size:10px;color:#7B1818;font-style:italic;margin-top:2px}
@@ -59,13 +62,16 @@ a{color:#8B6F47}
 .doc-totals-table{border-collapse:collapse;font-size:12px}
 .doc-totals-table td{padding:4px 8px}
 .doc-totals-table .tl{color:#6B5E52;text-align:right;font-size:11px}
-.doc-totals-table .tv{font-family:'DM Mono',monospace;font-weight:600;text-align:right;min-width:90px;color:#1a1a1a}
+.doc-totals-table .tv{font-family:monospace;font-weight:600;text-align:right;min-width:90px;color:#1a1a1a}
 .doc-totals-table tr.grand td{border-top:2px solid #B8945A;padding-top:8px}
-.doc-totals-table tr.grand .tv{font-size:17px;color:#B8945A}
+.doc-totals-table tr.grand .tl{font-weight:700;color:#1a1a1a;font-size:13px}
+.doc-totals-table tr.grand .tv{font-size:16px;color:#B8945A}
 
-.doc-notes{margin-top:16px;padding:11px 14px;background:#FAF8F5;border-radius:6px;border-left:3px solid #B8945A;font-size:11px;color:#6B5E52;white-space:pre-wrap}
+.doc-notes-wrap{margin-top:14px;padding:10px 12px;background:#FAF8F5;border-radius:6px;border-left:3px solid #B8945A;font-size:11px;color:#6B5E52;white-space:pre-wrap}
 
-.doc-footer{margin-top:20px;padding-top:12px;border-top:1px solid #E8E2D9;font-size:9.5px;color:#9E8E82;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.doc-footer{margin-top:20px;padding-top:12px;border-top:1px solid #E8E2D9;display:flex;justify-content:space-between;align-items:flex-end;font-size:9.5px;color:#9E8E82}
+.doc-footer-sigs{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:10px}
+.doc-sig-line{border-top:1px solid #C8C0B4;padding-top:4px;font-size:9.5px;color:#9E8E82;margin-top:36px}
 
 /* ── SIGNING SECTION ── */
 .sign-card{background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(28,23,20,.10);padding:28px 32px;margin-bottom:20px}
@@ -203,6 +209,32 @@ canvas#sigPad{display:block;width:100%;touch-action:none}
 const N8N_LOAD  = 'https://n8n.srv1165221.hstgr.cloud/webhook/load-quote';
 const N8N_SIGN  = 'https://n8n.srv1165221.hstgr.cloud/webhook/client-sign';
 
+const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" style="height:60px">
+  <circle cx="52" cy="42" r="28" fill="none" stroke="#1a1a1a" stroke-width="2.8"/>
+  <line x1="68" y1="16" x2="82" y2="68" stroke="#1a1a1a" stroke-width="2.8"/>
+  <path d="M74 68 Q104 36 101 68" fill="none" stroke="#1a1a1a" stroke-width="2.8"/>
+  <text x="16" y="90" font-family="Georgia,serif" font-size="9" letter-spacing="3" fill="#1a1a1a">CALIBRATE DESIGN</text>
+</svg>`;
+
+const HDB_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 44" style="height:36px">
+  <rect x="1" y="1" width="42" height="42" rx="3" fill="#cc2200" stroke="#cc2200"/>
+  <text x="21" y="16" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="900" fill="white">HDB</text>
+  <polygon points="21,19 10,42 32,42" fill="white"/>
+  <text x="50" y="11" font-family="Arial,sans-serif" font-size="7.5" font-weight="700" fill="#1a1a1a">HOUSING &amp;</text>
+  <text x="50" y="20" font-family="Arial,sans-serif" font-size="7.5" font-weight="700" fill="#1a1a1a">DEVELOPMENT</text>
+  <text x="50" y="29" font-family="Arial,sans-serif" font-size="7.5" font-weight="700" fill="#1a1a1a">BOARD</text>
+  <text x="2" y="51" font-family="Arial,sans-serif" font-size="6.5" fill="#1a1a1a">Licensed Contractor (HB-11-6269E)</text>
+</svg>`;
+
+const RCMA_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 46" style="height:36px">
+  <rect x="1" y="1" width="108" height="44" rx="3" fill="#cc2200" stroke="#cc2200"/>
+  <text x="55" y="17" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="900" fill="white">RCMA</text>
+  <text x="55" y="26" text-anchor="middle" font-family="Arial,sans-serif" font-size="4.5" fill="white">新加坡装修同业商联会</text>
+  <text x="55" y="33" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="white">SINGAPORE RENOVATION CONTRACTORS</text>
+  <text x="55" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="white">AND MATERIAL SUPPLIERS ASSOCIATION</text>
+  <text x="55" y="43" text-anchor="middle" font-family="Arial,sans-serif" font-size="3.8" fill="white">RCMA Cert No 082/2025</text>
+</svg>`;
+
 /* ══════════════════════════════════════════════════════
    HELPERS
 ══════════════════════════════════════════════════════ */
@@ -230,45 +262,37 @@ function buildQuoteHTML(data) {
   const s = data.summary || {};
   const items = data.line_items || [];
 
-  // Sort items into category → area
   const catMap = {};
   items.forEach(li => {
     const cat = li.category_id || li.category || 'General';
-    const area = li.area_id || li.area || '';
+    const area = li.area_id || li.area || 'General';
     if (!catMap[cat]) catMap[cat] = {};
     if (!catMap[cat][area]) catMap[cat][area] = [];
     catMap[cat][area].push(li);
   });
 
-  const CAT_ORDER = ['PROFESSIONAL SERVICES','RENOVATION PERMIT/PE ENDORSEMENT','DEMOLITION WORKS','MASONRY WORKS','MASONARY WORKS','SANITARY & PLUMBING WORKS','DOOR / GLASS / WINDOWS WORKS','CARPENTRY WORKS','TABLE TOP / PARTITION & CEILING','ELECTRICAL WORKS','AIRCON WORKS','MISCELLANEOUS'];
-  const sortedCats = Object.keys(catMap).sort((a,b) => {
-    const ai = CAT_ORDER.findIndex(x => x.toUpperCase() === a.toUpperCase());
-    const bi = CAT_ORDER.findIndex(x => x.toUpperCase() === b.toUpperCase());
-    return (ai<0?99:ai)-(bi<0?99:bi);
-  });
-
   let rowsHTML = '', num = 1;
-  sortedCats.forEach(cat => {
-    rowsHTML += `<tr class="doc-cat-row"><td colspan="5">${esc(cat)}</td></tr>`;
-    const areas = catMap[cat];
+  Object.entries(catMap).forEach(([cat, areas]) => {
+    rowsHTML += `<tr class="doc-cat-row"><td colspan="6">${esc(cat)}</td></tr>`;
     const akeys = Object.keys(areas);
     akeys.forEach(area => {
-      if (area && akeys.length > 1) rowsHTML += `<tr class="doc-area-row"><td colspan="5">↳ ${esc(area)}</td></tr>`;
+      if (akeys.length > 1) rowsHTML += `<tr class="doc-area-row"><td colspan="6">↳ ${esc(area)}</td></tr>`;
       areas[area].forEach(li => {
-        const qty  = parseFloat(li.qty) || 1;
+        const qty = parseFloat(li.qty) || 1;
         const unit = li.unit || 'lot';
-        const amt  = parseFloat(li.amount) || 0;
-        const unitAmt = qty ? (amt / qty) : amt;
-        const dim = (li.width_mm && li.height_mm) ? `L:${li.width_mm}mm × H:${li.height_mm}mm` : '';
+        const amt = parseFloat(li.amount) || 0;
+        const unitAmt = qty ? amt / qty : amt;
+        const dim = (li.width_mm && li.height_mm) ? `L:${li.width_mm}mm × H:${li.height_mm}mm` : (li.width_mm ? `W:${li.width_mm}mm` : '');
         const remark = li.remarks || li.remark || '';
         rowsHTML += `<tr>
-          <td style="color:#9E8E82;font-family:'DM Mono',monospace;font-size:9.5px;width:22px">${num++}</td>
+          <td style="color:#9E8E82;font-family:monospace;font-size:9.5px;width:22px">${num++}</td>
           <td><div class="doc-item-name">${esc(li.item_name||li.item_name_snapshot||'')}</div>
             ${dim ? `<div class="doc-item-dim">📐 ${esc(dim)}</div>` : ''}
             ${remark ? `<div class="doc-item-remark">↳ ${esc(remark)}</div>` : ''}</td>
           <td class="r" style="width:38px">${qty}</td>
-          <td style="width:48px;font-size:11px">${esc(unit)}</td>
-          <td class="r" style="width:82px;font-weight:600">${fmt(amt)}</td>
+          <td style="width:44px">${esc(unit)}</td>
+          <td class="r" style="width:72px">${fmt(unitAmt)}</td>
+          <td class="r" style="width:78px;font-weight:600">${fmt(amt)}</td>
         </tr>`;
       });
     });
@@ -276,23 +300,21 @@ function buildQuoteHTML(data) {
 
   const today = new Date().toLocaleDateString('en-SG', {day:'2-digit',month:'short',year:'numeric'});
 
-  return `
+  return `<div class="doc">
     <div class="doc-letterhead">
-      <div>
-        <div class="doc-co-name">CALIBRATE DESIGN PTE. LTD.</div>
-        <div class="doc-co-detail">
-          61 Ubi Road 1, #02-10 Oxley BizHub 1, Singapore 408727<br>
-          +65 9422 3385 &nbsp;|&nbsp; contact@calibratedesign.co<br>
-          UEN: 201820718K
-        </div>
+      <div class="doc-logo-wrap">
+        ${LOGO_SVG}
+        <div class="doc-co-name">Calibrate Design Pte. Ltd.</div>
+        <div class="doc-co-reg">UEN: 201820718K &nbsp;|&nbsp; 61 Ubi Road 1, #02-10 Oxley BizHub 1, Singapore 408727</div>
+        <div class="doc-certs">${HDB_SVG}${RCMA_SVG}</div>
       </div>
-      <div style="text-align:center">
+      <div class="doc-ref-col">
         <div class="doc-ref-box">
           <div class="doc-ref-label">Quotation Ref</div>
           <div class="doc-ref-val">${esc(p.quote_ref||QUOTE_REF)}</div>
         </div>
-        <div><span class="doc-badge">CUSTOMER COPY</span></div>
-        <div class="doc-date">Date: ${today}</div>
+        <div style="margin-top:6px"><span class="doc-copy-badge">CUSTOMER COPY</span></div>
+        <div style="font-size:9.5px;color:#9E8E82;margin-top:6px">Date: ${today}</div>
       </div>
     </div>
 
@@ -308,8 +330,9 @@ function buildQuoteHTML(data) {
       <thead><tr>
         <th style="width:22px">#</th><th>Description</th>
         <th class="r" style="width:38px">Qty</th>
-        <th style="width:48px">Unit</th>
-        <th class="r" style="width:82px">Total</th>
+        <th style="width:44px">Unit</th>
+        <th class="r" style="width:72px">Unit Amt</th>
+        <th class="r" style="width:78px">Total</th>
       </tr></thead>
       <tbody>${rowsHTML}</tbody>
     </table>
@@ -320,12 +343,17 @@ function buildQuoteHTML(data) {
       </tbody></table>
     </div>
 
-    ${p.notes ? `<div class="doc-notes"><strong style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#B8945A">Notes</strong>\n${esc(p.notes)}</div>` : ''}
+    ${p.notes ? `<div class="doc-notes-wrap"><strong style="font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#B8945A">Notes</strong><br>${esc(p.notes)}</div>` : ''}
 
     <div class="doc-footer">
       <div>Calibrate Design Pte. Ltd. &nbsp;·&nbsp; +65 9422 3385 &nbsp;·&nbsp; contact@calibratedesign.co</div>
-      <div>Valid for 30 days from date of issue.</div>
-    </div>`;
+      <div>This quotation is valid for 30 days from date of issue.</div>
+    </div>
+    <div class="doc-footer-sigs">
+      <div><div class="doc-sig-line">Authorised Signature &amp; Company Stamp</div></div>
+      <div><div class="doc-sig-line">Client Acceptance Signature &amp; Date</div></div>
+    </div>
+  </div>`;
 }
 
 /* ══════════════════════════════════════════════════════
